@@ -3,15 +3,53 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1706.14
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CF1BA9CD-B32F-4E85-84C9-B5D0548799CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infastructure", "Infastructure", "{E6397012-6DBE-4298-B89B-05E9AD8C0AB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{5824193B-341A-472B-915F-18CE317D2E80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganNakil.Application", "Core\OrganNakil.Application\OrganNakil.Application.csproj", "{3C225136-C6D3-49B9-A39E-F1516E0948F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganNakil.Domain", "Core\OrganNakil.Application\OrganNakil.Domain\OrganNakil.Domain.csproj", "{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganNakil.Persistence", "Infastructure\OrganNakil.Persistence\OrganNakil.Persistence.csproj", "{2C57D977-7C70-43E6-8856-04348A1A40E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganNakil.WebAPI", "Presentation\OrganNakil.WebAPI\OrganNakil.WebAPI.csproj", "{42A3FF96-3CD1-4141-9B5F-C683ED00346A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C225136-C6D3-49B9-A39E-F1516E0948F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C225136-C6D3-49B9-A39E-F1516E0948F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C225136-C6D3-49B9-A39E-F1516E0948F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C225136-C6D3-49B9-A39E-F1516E0948F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C57D977-7C70-43E6-8856-04348A1A40E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C57D977-7C70-43E6-8856-04348A1A40E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C57D977-7C70-43E6-8856-04348A1A40E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C57D977-7C70-43E6-8856-04348A1A40E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A3FF96-3CD1-4141-9B5F-C683ED00346A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A3FF96-3CD1-4141-9B5F-C683ED00346A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A3FF96-3CD1-4141-9B5F-C683ED00346A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A3FF96-3CD1-4141-9B5F-C683ED00346A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F76448A7-20C3-4793-B636-90D81F205EFF}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3C225136-C6D3-49B9-A39E-F1516E0948F1} = {CF1BA9CD-B32F-4E85-84C9-B5D0548799CE}
+		{E963EF36-FB5D-4F8E-8DA3-79C28D1BCAD2} = {CF1BA9CD-B32F-4E85-84C9-B5D0548799CE}
+		{2C57D977-7C70-43E6-8856-04348A1A40E3} = {E6397012-6DBE-4298-B89B-05E9AD8C0AB1}
+		{42A3FF96-3CD1-4141-9B5F-C683ED00346A} = {5824193B-341A-472B-915F-18CE317D2E80}
 	EndGlobalSection
 EndGlobal

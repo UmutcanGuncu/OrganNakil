@@ -1,0 +1,7 @@
+﻿@OrganNakil.WebAPI_HostAddress = http://localhost:5188
+
+GET {{OrganNakil.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
