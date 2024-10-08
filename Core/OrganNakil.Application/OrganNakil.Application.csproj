@@ -6,4 +6,43 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Mediatr\" />
+    <None Remove="Mediatr\Commands\" />
+    <None Remove="Mediatr\Handlers\" />
+    <None Remove="Mediatr\Queries\" />
+    <None Remove="Mediatr\Results\" />
+    <None Remove="Mediatr\Commands\UserCommands\" />
+    <None Remove="Mediatr\Handlers\UserHandlers\" />
+    <None Remove="Dtos\" />
+    <None Remove="Dtos\UserDtos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mediatr\" />
+    <Folder Include="Mediatr\Commands\" />
+    <Folder Include="Mediatr\Handlers\" />
+    <Folder Include="Mediatr\Queries\" />
+    <Folder Include="Mediatr\Results\" />
+    <Folder Include="Mediatr\Commands\UserCommands\" />
+    <Folder Include="Mediatr\Handlers\UserHandlers\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Dtos\UserDtos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OrganNakil.Domain\OrganNakil.Domain.csproj" />
+  </ItemGroup>
 </Project>

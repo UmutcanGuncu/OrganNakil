@@ -1,0 +1,15 @@
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/bin/Debug/net8.0/OrganNakil.Domain.deps.json
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/bin/Debug/net8.0/OrganNakil.Domain.runtimeconfig.json
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/bin/Debug/net8.0/OrganNakil.Domain.dll
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/bin/Debug/net8.0/OrganNakil.Domain.pdb
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.csproj.AssemblyReference.cache
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.AssemblyInfoInputs.cache
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.AssemblyInfo.cs
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.csproj.CoreCompileInputs.cache
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.sourcelink.json
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.dll
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/refint/OrganNakil.Domain.dll
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.pdb
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/OrganNakil.Domain.genruntimeconfig.cache
+/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/Debug/net8.0/ref/OrganNakil.Domain.dll
