@@ -18,14 +18,14 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
 
         public async Task<UserStatusDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            if (request.Password != request.ConfirmPassword)
-            {
-
-            }
+            
             var value = await _userManager.CreateAsync(new()
             {
-                UserName = request.Username,
+                UserName = request.Tc,
                 Email = request.Email,
+                Name = request.Name,
+                Surname = request.Surname,
+                PhoneNumber = request.Number
 
             }, request.Password);
             if (value.Succeeded)

@@ -25,6 +25,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OrganNakilDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+builder.Services.AddAuthorization();
 builder.Services.AddIdentity<AppUser, AppRole >(options =>
 {
     options.User.RequireUniqueEmail = true;
@@ -36,6 +37,8 @@ builder.Services.AddIdentity<AppUser, AppRole >(options =>
 .AddEntityFrameworkStores<OrganNakilDbContext>();
 var app = builder.Build();
 
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -45,6 +48,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
