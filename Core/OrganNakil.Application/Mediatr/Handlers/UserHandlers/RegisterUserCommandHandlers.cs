@@ -10,10 +10,11 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
     public class RegisterUserCommandHandlers : IRequestHandler<RegisterUserCommand, UserStatusDto>
     {
         private readonly UserManager<AppUser> _userManager;
-
-        public RegisterUserCommandHandlers(UserManager<AppUser> userManager)
+        private readonly RoleManager<AppRole> _roleManager;
+        public RegisterUserCommandHandlers(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<UserStatusDto> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -30,6 +31,8 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
             }, request.Password);
             if (value.Succeeded)
             {
+                var user = await _userManager.FindByEmailAsync(request.Email);
+                await _userManager.AddToRoleAsync(user, "User");
                 return new() { Code = "Success", Description = "Kayıt İşlemi Başarıyla Tamamlanmıştır" };
             }
             var firstError = value.Errors.First();
