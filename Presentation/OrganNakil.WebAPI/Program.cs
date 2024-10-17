@@ -18,7 +18,9 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     typeof(Program).Assembly,
     typeof(RegisterUserCommandHandlers).Assembly 
 ));
-
+builder.Services.AddCors(options =>
+options.AddPolicy("myPolicy",opt=>
+opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
