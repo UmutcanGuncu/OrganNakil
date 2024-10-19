@@ -29,10 +29,12 @@ namespace OrganNakil.WebAPI.Controllers
 
         [HttpPost("register")]
        public async Task<IActionResult> RegisterUser(RegisterUserCommand register)
-        {
-            
-            return Ok(await _mediator.Send(register));
-        }
+       {
+           var value = await _mediator.Send(register);
+           if (value.Code == "Success")
+               return Ok(value);
+           return Unauthorized(value);
+       }
         [HttpPost("login")]
         public async Task<IActionResult> LoginUser(UserLoginDto model)
         {
@@ -44,7 +46,7 @@ namespace OrganNakil.WebAPI.Controllers
                     Code = "User Not Found",
                     Description = "Kullanıcı Bilgisi Bulunamadı"
                 };
-                return Ok(userStatusDto);
+                return Unauthorized(userStatusDto);
             }
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true); // remember me bilgisini kullanıcıdan al
             if (result.Succeeded)
@@ -63,10 +65,16 @@ namespace OrganNakil.WebAPI.Controllers
                     Code = "Incorrect Password",
                     Description = "Şifreniz Yanlış"
                 };
-                return Ok(userStatusDto);
+                return Unauthorized(userStatusDto);
             }
             
             
+        }
+
+        [HttpPost("generate-reset-token")]
+        public async Task<IActionResult> PasswordReset()
+        {
+            return Ok();
         }
 
     }

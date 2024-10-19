@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OrganNakil.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ee64c1ba4fd1b93f28596d0f56117e23c0c38ca")]
 [assembly: System.Reflection.AssemblyProductAttribute("OrganNakil.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OrganNakil.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

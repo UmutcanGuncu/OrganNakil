@@ -39,7 +39,6 @@
     <Folder Include="Mediatr\Results\" />
     <Folder Include="Mediatr\Commands\UserCommands\" />
     <Folder Include="Mediatr\Handlers\UserHandlers\" />
-    <Folder Include="Dtos\" />
     <Folder Include="Dtos\UserDtos\" />
   </ItemGroup>
   <ItemGroup>

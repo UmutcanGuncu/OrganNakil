@@ -1174,6 +1174,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.8",
+          "OrganNakil.Application": "1.0.0",
           "OrganNakil.Domain": "1.0.0"
         },
         "compile": {

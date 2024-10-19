@@ -192,6 +192,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {
+                "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj"
+              },
               "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
                 "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj"
               }

@@ -26,6 +26,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\OrganNakil.Application\OrganNakil.Application.csproj" />
     <ProjectReference Include="..\..\Core\OrganNakil.Domain\OrganNakil.Domain.csproj" />
   </ItemGroup>
 </Project>
