@@ -2,45 +2,39 @@ using OrganNakil.Application.Interfaces;
 using System.Net;
 using System.Net.Mail;
 using Microsoft.Extensions.Options;
-using OrganNakil.Application.Dtos.MailDtos;
+using OrganNakil.Application.OptionsModel;
+
 
 namespace OrganNakil.Persistence.Repositories;
 
 public class MailRepository : IMailRepository
 {
-    
-/*
-    public Task SendResetMailAsync(string resetEmailLink, string To)
+    private readonly EmailSettings _emailSettings;
+
+    public MailRepository(IOptions<EmailSettings> options)
     {
-        MailAddress to = new MailAddress("ToAddress");
-        MailAddress from = new MailAddress("FromAddress");
-
-        MailMessage emaill = new MailMessage(from, to);
-        emaill.Subject = "Testing out email sending";
-        emaill.Body = "Hello all the way from the land of C#";
-
-        SmtpClient smtp = new SmtpClient();
-        smtp.Host = "smtp.server.address";
-        smtp.Port = 25;
-        smtp.Credentials = new NetworkCredential("smtp_username", "smtp_password");
-        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        smtp.EnableSsl = true;
-
-        try
-        {
-            
-            
-            smtp.Send(emaill);
-        }
-        catch (SmtpException ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        
+        _emailSettings = options.Value;
     }
-    */
-public Task SendResetMailAsync(string resetEmailLink, string To)
-{
-    throw new NotImplementedException();
-}
+
+    public async Task SendResetMailAsync(string resetPasswordEmailLink, string ToEmail)
+    {
+        var smtpClient = new SmtpClient();
+        smtpClient.Host = _emailSettings.Host;
+        smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+        smtpClient.UseDefaultCredentials = false;
+        smtpClient.Port = 587;
+        smtpClient.Credentials =
+            new NetworkCredential(_emailSettings.Email, _emailSettings.Password);
+        smtpClient.EnableSsl = true;
+        smtpClient.Timeout = 5000;
+        var mailMessage = new MailMessage();
+        mailMessage.From = new MailAddress(_emailSettings.Email);
+        mailMessage.To.Add(ToEmail);
+        mailMessage.Subject = "Organ Nakil Uygulaması Şifre Sıfırlama Linki";
+        mailMessage.Body = @$"<h4>Şifre yenilemek için aşağıdaki linke tıklayınız</h4><p><a href='{resetPasswordEmailLink}'>
+                           Şifre Yenileme Linki</a></p>";
+        mailMessage.IsBodyHtml = true;
+        await smtpClient.SendMailAsync(mailMessage);
+
+    }
 }

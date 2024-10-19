@@ -6,7 +6,9 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OrganNakil.Application.Dtos.UserDtos;
+using OrganNakil.Application.Interfaces;
 using OrganNakil.Application.Mediatr.Commands.UserCommands;
 using OrganNakil.Domain.Entities;
 
@@ -20,11 +22,13 @@ namespace OrganNakil.WebAPI.Controllers
         private readonly IMediator _mediator;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
-        public UserController(IMediator mediator, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        private readonly IMailRepository _mailRepository;
+        public UserController(IMediator mediator, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IMailRepository mailRepository)
         {
             _mediator = mediator;
             _signInManager = signInManager;
             _userManager = userManager;
+            _mailRepository = mailRepository;
         }
 
         [HttpPost("register")]
@@ -71,9 +75,29 @@ namespace OrganNakil.WebAPI.Controllers
             
         }
 
-        [HttpPost("generate-reset-token")]
+        [HttpGet("generate-reset-token")]
         public async Task<IActionResult> PasswordReset()
         {
+            return Ok();
+        }
+
+        [HttpPost("generate-reset-token")]
+        public async Task<IActionResult> PasswordReset(PasswordResetDto passwordResetDto)
+        {
+            var hasUser = await _userManager.FindByEmailAsync(passwordResetDto.Email);
+            if (hasUser == null)
+            {
+                UserStatusDto userStatusDto = new UserStatusDto()
+                {
+                    Code = "User Not Found",
+                    Description = "Kullanıcı Bilgisi Bulunamadı"
+                };
+                return Unauthorized(userStatusDto);
+            }
+
+            string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(hasUser);
+            var passwordResetLink = Url.Action("PasswordReset","User",new {userId = hasUser.Id,Token = passwordResetToken},HttpContext.Request.Scheme,"localhost");
+            await _mailRepository.SendResetMailAsync(passwordResetLink, hasUser.Email);
             return Ok();
         }
 

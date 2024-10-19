@@ -3,9 +3,12 @@ using System.Reflection;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OrganNakil.Application.Interfaces;
 using OrganNakil.Application.Mediatr.Handlers.UserHandlers;
+using OrganNakil.Application.OptionsModel;
 using OrganNakil.Domain.Entities;
 using OrganNakil.Persistence.Context;
+using OrganNakil.Persistence.Repositories;
 using OrganNakil.WebAPI.Localizations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +24,8 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
 builder.Services.AddCors(options =>
 options.AddPolicy("myPolicy",opt=>
 opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()));
-
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
+builder.Services.AddScoped<IMailRepository, MailRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OrganNakilDbContext>(options =>
