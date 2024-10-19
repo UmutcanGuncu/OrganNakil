@@ -5,6 +5,7 @@ namespace OrganNakil.Application.Dtos.UserDtos
 	{
 		public string Code { get; set; }
 		public string Description { get; set; }
+		public Guid? UserId { get; set; }
 	}
 }
 

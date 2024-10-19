@@ -26,6 +26,7 @@ options.AddPolicy("myPolicy",opt=>
 opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()));
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
 builder.Services.AddScoped<IMailRepository, MailRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OrganNakilDbContext>(options =>
@@ -39,6 +40,7 @@ builder.Services.AddIdentity<AppUser, AppRole >(options =>
     options.Lockout.MaxFailedAccessAttempts = 4; // 4 tane başarısız giriş denemesinden sonra 5 dk giriş yapılamayacak
 }).AddDefaultTokenProviders()
 .AddRoles<AppRole>()
+.AddRoleManager<RoleManager<AppRole>>()
 .AddErrorDescriber<LocalizationIdentityErrorDescriber>()
 .AddEntityFrameworkStores<OrganNakilDbContext>();
 var app = builder.Build();
@@ -56,7 +58,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

@@ -6,7 +6,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OrganNakil.Application.Dtos.UserDtos;
 using OrganNakil.Application.Interfaces;
 using OrganNakil.Application.Mediatr.Commands.UserCommands;
@@ -58,7 +57,8 @@ namespace OrganNakil.WebAPI.Controllers
                 UserStatusDto userStatusDto = new()
                 {
                     Code = "Success",
-                    Description = "Giriş İşlemi Başarıyla Tamamlanmıştır"
+                    Description = "Giriş İşlemi Başarıyla Tamamlanmıştır",
+                    UserId = user.Id
                 };
                 return Ok(userStatusDto);
             }

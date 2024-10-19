@@ -33,10 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mediatr\" />
-    <Folder Include="Mediatr\Commands\" />
-    <Folder Include="Mediatr\Handlers\" />
-    <Folder Include="Mediatr\Queries\" />
-    <Folder Include="Mediatr\Results\" />
+    <Folder Include="Mediatr\Commands\MemberCommands\" />
     <Folder Include="Mediatr\Commands\UserCommands\" />
     <Folder Include="Mediatr\Handlers\UserHandlers\" />
   </ItemGroup>
