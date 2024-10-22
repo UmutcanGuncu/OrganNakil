@@ -51,6 +51,7 @@ namespace OrganNakil.WebAPI.Controllers
                 };
                 return Unauthorized(userStatusDto);
             }
+            await _signInManager.SignOutAsync();
             var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true); // remember me bilgisini kullanıcıdan al
             if (result.Succeeded)
             {
