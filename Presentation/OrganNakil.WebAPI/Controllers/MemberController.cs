@@ -7,7 +7,7 @@ namespace OrganNakil.WebAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
+[AllowAnonymous]
 public class MemberController : ControllerBase
 {
     private IMediator _mediator;
