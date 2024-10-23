@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using OrganNakil.Application.Dtos.UserDtos;
@@ -24,8 +25,8 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
             {
                 UserName = request.Tc,
                 Email = request.Email,
-                Name = request.Name,
-                Surname = request.Surname,
+                Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Name.ToLower()),
+                Surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Surname.ToLower()),
                 PhoneNumber = request.Number
 
             }, request.Password);
