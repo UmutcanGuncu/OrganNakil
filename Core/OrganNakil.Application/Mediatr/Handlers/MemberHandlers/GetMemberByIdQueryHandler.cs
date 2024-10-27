@@ -25,7 +25,8 @@ public class GetMemberByIdQueryHandler : IRequestHandler<GetMemberByIdQuery, Get
             Name = value.Name,
             Surname = value.Surname,
             PhoneNumber = value.PhoneNumber,
-            Tc = value.UserName
+            Tc = value.UserName,
+            BloodGroup = value.BloodGroup
         };
     }
 }

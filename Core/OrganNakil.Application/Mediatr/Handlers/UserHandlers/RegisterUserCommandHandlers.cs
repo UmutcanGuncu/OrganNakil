@@ -27,7 +27,8 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
                 Email = request.Email,
                 Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Name.ToLower()),
                 Surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Surname.ToLower()),
-                PhoneNumber = request.Number
+                PhoneNumber = request.Number,
+                BloodGroup = request.BloodGroup
 
             }, request.Password);
             if (value.Succeeded)

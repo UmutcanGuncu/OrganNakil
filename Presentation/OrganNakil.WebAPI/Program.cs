@@ -27,6 +27,7 @@ options.AddPolicy("myPolicy",opt=>
 opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()));
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
 builder.Services.AddScoped<IMailRepository, MailRepository>();
+builder.Services.AddScoped<IOrganDonationRepository, OrganDonationRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

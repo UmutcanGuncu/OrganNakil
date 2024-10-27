@@ -23,7 +23,7 @@ public class MemberRepository:IGenericRepository<AppUser>, IMemberRepository
         return await _context.Set<AppUser>().FindAsync(id);
     }
 
-    public Task CreateAsync(AppUser t)
+    public Task<AppUser> CreateAsync(AppUser t)
     {
         throw new NotImplementedException();
     }

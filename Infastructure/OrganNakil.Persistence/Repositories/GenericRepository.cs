@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using OrganNakil.Application.Interfaces;
 using OrganNakil.Persistence.Context;
 
@@ -22,9 +23,16 @@ public class GenericRepository<T> : IGenericRepository<T> where T: class
         return await _context.Set<T>().FindAsync(id);
     }
 
-    public Task CreateAsync(T t)
+    public async Task<T> CreateAsync(T t)
     {
-        throw new NotImplementedException();
+         var value =await _context.Set<T>().AddAsync(t);
+         await _context.SaveChangesAsync();
+         if (value.State == EntityState.Unchanged)
+         {
+             return value.Entity;
+         }
+
+         return null;
     }
 
     public Task UpdateAsync(T t)

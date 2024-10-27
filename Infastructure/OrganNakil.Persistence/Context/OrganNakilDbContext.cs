@@ -9,6 +9,8 @@ namespace OrganNakil.Persistence.Context
         public OrganNakilDbContext(DbContextOptions options) : base(options)
         {
         }
+        public DbSet<Organ> Organs { get; set; }
+        public DbSet<OrganDonationRequest> OrganDonationRequests { get; set; }
     }
 }
 
