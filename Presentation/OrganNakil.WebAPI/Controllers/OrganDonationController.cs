@@ -29,7 +29,7 @@ public class OrganDonationController : ControllerBase
         return BadRequest(value);
     }
 
-    [HttpGet]
+    [HttpGet("activeAllDonationList")]
     public async Task<IActionResult> GetActiveOrganDonationList()
     {
         var values = await _mediator.Send(new GetActiveOrganDonationRequestQuery());
