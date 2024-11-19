@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bHa9W97TeS/I+skW+35SN+4t2NBS0KLrx4woojOOLuom8iGgW1QSnolCgalHPQnpx3TFqDM73cFuLkLIu6wI9g==",
+  "dgSpecHash": "+GEgJ1V08ck=",
   "success": true,
-  "projectFilePath": "/Users/umutcanguncu/Projects/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
+  "projectFilePath": "/Users/umutcanguncu/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
   "expectedPackageFiles": [
     "/Users/umutcanguncu/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/umutcanguncu/.nuget/packages/mediatr/12.4.1/mediatr.12.4.1.nupkg.sha512",
@@ -53,5 +53,26 @@
     "/Users/umutcanguncu/.nuget/packages/system.text.json/8.0.4/system.text.json.8.0.4.nupkg.sha512",
     "/Users/umutcanguncu/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Extensions.Caching.Memory' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
+      "libraryId": "Microsoft.Extensions.Caching.Memory",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Text.Json' 8.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

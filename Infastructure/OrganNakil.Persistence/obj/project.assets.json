@@ -2586,12 +2586,13 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/umutcanguncu/Projects/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
+      "projectUniqueName": "/Users/umutcanguncu/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
       "projectName": "OrganNakil.Persistence",
-      "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
+      "projectPath": "/Users/umutcanguncu/OrganNakil/Infastructure/OrganNakil.Persistence/OrganNakil.Persistence.csproj",
       "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
-      "outputPath": "/Users/umutcanguncu/Projects/OrganNakil/Infastructure/OrganNakil.Persistence/obj/",
+      "outputPath": "/Users/umutcanguncu/OrganNakil/Infastructure/OrganNakil.Persistence/obj/",
       "projectStyle": "PackageReference",
+      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
       ],
@@ -2605,11 +2606,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {
-              "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj"
+            "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {
+              "projectPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj"
             },
-            "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
-              "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj"
+            "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
+              "projectPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj"
             }
           }
         }
@@ -2618,6 +2619,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "all"
       }
     },
     "frameworks": {
@@ -2665,8 +2671,30 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/Users/umutcanguncu/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Extensions.Caching.Memory' 8.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-qj66-m88j-hmgj",
+      "libraryId": "Microsoft.Extensions.Caching.Memory",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'System.Text.Json' 8.0.4 has a known high severity vulnerability, https://github.com/advisories/GHSA-8g4q-xg66-9fp4",
+      "libraryId": "System.Text.Json",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

@@ -25,17 +25,22 @@ public class OrganDonationRepository : IOrganDonationRepository
         var organ = await _context.Set<Organ>().Where(x => x.Name == createOrganDonationRequestDto.OrganName)
             .FirstOrDefaultAsync();
         var user = await _userManager.FindByIdAsync(createOrganDonationRequestDto.AppUser_Id.ToString());
-        var value = await _context.Set<OrganDonationRequest>().AddAsync(new OrganDonationRequest()
+        var deneme = await _context.Set<OrganDonationRequest>()
+            .Where(x => x.OrganId == organ.Id && x.AppUserId == user.Id).ToListAsync();
+        if (deneme.Count == 0)
         {
-            AppUserId = user.Id,
-            OrganId = organ.Id
-        });
-        await _context.SaveChangesAsync();
-        if (value.State == EntityState.Unchanged)
-        {
-            return value.Entity;
+            var value = await _context.Set<OrganDonationRequest>().AddAsync(new OrganDonationRequest()
+            {
+                AppUserId = user.Id,
+                OrganId = organ.Id
+            });
+            await _context.SaveChangesAsync();
+            if (value.State == EntityState.Unchanged)
+            {
+                return value.Entity;
+            }
+            return null;
         }
-
         return null;
     }
 

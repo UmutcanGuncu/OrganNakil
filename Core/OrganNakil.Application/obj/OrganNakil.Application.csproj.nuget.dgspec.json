@@ -1,18 +1,19 @@
 {
   "format": 1,
   "restore": {
-    "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {}
+    "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {}
   },
   "projects": {
-    "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {
+    "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj",
+        "projectUniqueName": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj",
         "projectName": "OrganNakil.Application",
-        "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj",
+        "projectPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/OrganNakil.Application.csproj",
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
-        "outputPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Application/obj/",
+        "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/obj/",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -26,8 +27,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
-                "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj"
+              "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
+                "projectPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj"
               }
             }
           }
@@ -36,6 +37,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
         }
       },
       "frameworks": {
@@ -87,19 +93,20 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/umutcanguncu/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
+    "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj",
+        "projectUniqueName": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj",
         "projectName": "OrganNakil.Domain",
-        "projectPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj",
+        "projectPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/OrganNakil.Domain.csproj",
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
-        "outputPath": "/Users/umutcanguncu/Projects/OrganNakil/Core/OrganNakil.Domain/obj/",
+        "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/obj/",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -119,6 +126,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
         }
       },
       "frameworks": {
@@ -166,7 +178,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/Users/umutcanguncu/.dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
