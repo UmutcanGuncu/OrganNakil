@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OrganNakil.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6690e2b62d205435d73c641b197c64fbe195938")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0eec9cfc8022b6db2d8a39d517119e61be26a1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("OrganNakil.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OrganNakil.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

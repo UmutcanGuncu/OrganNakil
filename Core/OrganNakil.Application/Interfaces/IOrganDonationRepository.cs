@@ -7,4 +7,5 @@ public interface IOrganDonationRepository
 {
     public Task<OrganDonationRequest> AddOrganDonationRequest(CreateOrganDonationRequestDto createOrganDonationRequestDto);
     public Task<List<GetOrganDonationRequestDto>> GetActiveOrganDonationRequest();
+    public Task<List<GetOrganDonationRequestDto>> GetFilteredOrganDonationRequest(string city = null, string bloodType = null, string organ = null);
 }

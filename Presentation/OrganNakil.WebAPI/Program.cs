@@ -23,8 +23,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(
     typeof(RegisterUserCommandHandlers).Assembly 
 ));
 builder.Services.AddCors(options =>
-options.AddPolicy("myPolicy",opt=>
-opt.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials()));
+    options.AddPolicy("myPolicy", opt =>
+        opt.AllowAnyOrigin() // Belirli bir origin
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            )); // Kimlik bilgilerini destekler
+
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
 builder.Services.AddScoped<IMailRepository, MailRepository>();
 builder.Services.AddScoped<IOrganDonationRepository, OrganDonationRepository>();
@@ -60,8 +64,7 @@ builder.Services.AddIdentity<AppUser, AppRole >(options =>
 
 var app = builder.Build();
 
-
-
+app.UseCors("myPolicy");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -12,10 +12,12 @@ namespace OrganNakil.WebAPI.Controllers;
 public class OrganDonationController : ControllerBase
 {
     private readonly IMediator _mediator;
-    public OrganDonationController(IMediator mediator)
+    
+
+
+    public OrganDonationController(IMediator mediator, IOrganDonationRepository organDonationRepository)
     {
         _mediator = mediator;
-        
     }
 
     [HttpPost]
@@ -33,6 +35,13 @@ public class OrganDonationController : ControllerBase
     public async Task<IActionResult> GetActiveOrganDonationList()
     {
         var values = await _mediator.Send(new GetActiveOrganDonationRequestQuery());
+        return Ok(values);
+    }
+
+    [HttpGet("filteredAllDonationList")]
+    public async Task<IActionResult> GetFilteredOrganDonationList(string city = null, string bloodType = null, string organ = null)
+    {
+        var values = await _mediator.Send(new GetFilteredOrganDonationRequestQuery(city, bloodType, organ));
         return Ok(values);
     }
 }

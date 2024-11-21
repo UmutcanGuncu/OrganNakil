@@ -60,9 +60,38 @@ public class OrganDonationRepository : IOrganDonationRepository
             OrganName = x.Organ.Name,
             PhoneNumber = x.AppUser.PhoneNumber,
             Surname = x.AppUser.Surname
-        }).ToList();
+        }).OrderByDescending(x=>x.CreatedDate).ToList();
         
 
         return getOrganDonationRequestDtos;
+    }
+
+    public async Task<List<GetOrganDonationRequestDto>> GetFilteredOrganDonationRequest(string city = null, string bloodType = null, string organ = null)
+    {
+        var query =  _context.OrganDonationRequests.Include(x => x.AppUser).Include(x => x.Organ).AsQueryable();
+        if (!string.IsNullOrEmpty(bloodType))
+        {
+            query = query.Where(x=> x.AppUser.BloodGroup == bloodType && x.IsDeleted == false);
+            
+        }
+
+        if (!string.IsNullOrEmpty(organ))
+        {
+            query = query.Where(x=>x.Organ.Name == organ && x.IsDeleted == false);
+        }
+        var values = await query.OrderByDescending(x => x.CreatedDate).ToListAsync();
+        var getFilteredOrganDonationRequestDto = values.Select(x => new GetOrganDonationRequestDto()
+        {
+            AppUserId = x.AppUserId,
+            BloodGroup = x.AppUser.BloodGroup,
+            CreatedDate = x.CreatedDate,
+            Id = x.Id,
+            Name = x.AppUser.Name,
+            OrganId = x.OrganId,
+            OrganName = x.Organ.Name,
+            PhoneNumber = x.AppUser.PhoneNumber,
+            Surname = x.AppUser.Surname
+        }).ToList();
+        return getFilteredOrganDonationRequestDto;
     }
 }
