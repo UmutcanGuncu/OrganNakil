@@ -25,6 +25,7 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
             {
                 UserName = request.Tc,
                 Email = request.Email,
+                City = request.City,
                 Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Name.ToLower()),
                 Surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Surname.ToLower()),
                 PhoneNumber = request.Number,

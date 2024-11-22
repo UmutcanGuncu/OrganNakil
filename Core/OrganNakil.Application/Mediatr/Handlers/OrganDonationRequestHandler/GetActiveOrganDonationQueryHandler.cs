@@ -22,6 +22,7 @@ public class GetActiveOrganDonationQueryHandler : IRequestHandler<GetActiveOrgan
             AppUserId = x.AppUserId,
             BloodGroup = x.BloodGroup,
             CreatedDate = x.CreatedDate,
+            City = x.City,
             Id = x.Id,
             Name = x.Name,
             OrganId = x.OrganId,

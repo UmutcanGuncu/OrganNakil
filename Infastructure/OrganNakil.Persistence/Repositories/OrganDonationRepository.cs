@@ -55,6 +55,7 @@ public class OrganDonationRepository : IOrganDonationRepository
             BloodGroup = x.AppUser.BloodGroup,
             CreatedDate = x.CreatedDate,
             Id = x.Id,
+            City = x.AppUser.City,
             Name = x.AppUser.Name,
             OrganId = x.OrganId,
             OrganName = x.Organ.Name,
@@ -69,6 +70,10 @@ public class OrganDonationRepository : IOrganDonationRepository
     public async Task<List<GetOrganDonationRequestDto>> GetFilteredOrganDonationRequest(string city = null, string bloodType = null, string organ = null)
     {
         var query =  _context.OrganDonationRequests.Include(x => x.AppUser).Include(x => x.Organ).AsQueryable();
+        if (!string.IsNullOrEmpty(city))
+        {
+            query = query.Where(x=>x.AppUser.City == city && x.IsDeleted == false);
+        }
         if (!string.IsNullOrEmpty(bloodType))
         {
             query = query.Where(x=> x.AppUser.BloodGroup == bloodType && x.IsDeleted == false);
@@ -86,6 +91,7 @@ public class OrganDonationRepository : IOrganDonationRepository
             BloodGroup = x.AppUser.BloodGroup,
             CreatedDate = x.CreatedDate,
             Id = x.Id,
+            City = x.AppUser.City,
             Name = x.AppUser.Name,
             OrganId = x.OrganId,
             OrganName = x.Organ.Name,
