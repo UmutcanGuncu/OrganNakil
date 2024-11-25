@@ -31,7 +31,8 @@ public class GetFilteredOrganDonationQueryHandler : IRequestHandler<GetFilteredO
                 OrganId = x.OrganId,
                 OrganName = x.OrganName,
                 PhoneNumber = x.PhoneNumber,
-                Surname = x.Surname
+                Surname = x.Surname,
+                City = x.City
                 
             }).ToList();
     }
