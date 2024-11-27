@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OrganNakil.WebAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e344de43d396012d30a072f5ff4e0c128d0a122b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e595ddd3824089b98718e1d84eeca663f9343a42")]
 [assembly: System.Reflection.AssemblyProductAttribute("OrganNakil.WebAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OrganNakil.WebAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
