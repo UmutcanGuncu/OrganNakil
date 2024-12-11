@@ -30,6 +30,7 @@ builder.Services.AddCors(options =>
             )); // Kimlik bilgilerini destekler
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
+
 builder.Services.AddScoped<IMailRepository, MailRepository>();
 builder.Services.AddScoped<IOrganDonationRepository, OrganDonationRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -65,6 +66,7 @@ builder.Services.AddIdentity<AppUser, AppRole >(options =>
 var app = builder.Build();
 
 app.UseCors("myPolicy");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

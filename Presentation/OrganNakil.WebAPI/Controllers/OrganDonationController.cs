@@ -1,3 +1,4 @@
+using System.Web;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,8 @@ public class OrganDonationController : ControllerBase
     [HttpGet("filteredAllDonationList")]
     public async Task<IActionResult> GetFilteredOrganDonationList(string city = null, string bloodType = null, string organ = null)
     {
+        city = HttpUtility.UrlDecode(city);
+        organ = HttpUtility.UrlDecode(organ);
         var values = await _mediator.Send(new GetFilteredOrganDonationRequestQuery(city, bloodType, organ));
         return Ok(values);
     }

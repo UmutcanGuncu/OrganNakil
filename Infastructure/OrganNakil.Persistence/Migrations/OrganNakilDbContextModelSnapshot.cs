@@ -167,7 +167,7 @@ namespace OrganNakil.Persistence.Migrations
 
                     b.Property<string>("City")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("citext");;
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

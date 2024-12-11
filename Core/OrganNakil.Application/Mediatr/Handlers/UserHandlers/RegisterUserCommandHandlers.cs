@@ -25,11 +25,12 @@ namespace OrganNakil.Application.Mediatr.Handlers.UserHandlers
             {
                 UserName = request.Tc,
                 Email = request.Email,
-                City = request.City,
+                City = request.City.ToLower(new CultureInfo("tr-TR")),
                 Name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Name.ToLower()),
                 Surname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(request.Surname.ToLower()),
                 PhoneNumber = request.Number,
                 BloodGroup = request.BloodGroup
+                
 
             }, request.Password);
             if (value.Succeeded)

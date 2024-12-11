@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -70,19 +71,21 @@ public class OrganDonationRepository : IOrganDonationRepository
     public async Task<List<GetOrganDonationRequestDto>> GetFilteredOrganDonationRequest(string city = null, string bloodType = null, string organ = null)
     {
         var query =  _context.OrganDonationRequests.Include(x => x.AppUser).Include(x => x.Organ).AsQueryable();
+        
         if (!string.IsNullOrEmpty(city))
         {
-            query = query.Where(x=>x.AppUser.City == city && x.IsDeleted == false);
+            city = city.ToLower(new CultureInfo("tr-TR"));
+            query = query.Where(x => EF.Functions.ILike(x.AppUser.City,city)&& x.IsDeleted == false);
         }
+        
         if (!string.IsNullOrEmpty(bloodType))
         {
-            query = query.Where(x=> x.AppUser.BloodGroup == bloodType && x.IsDeleted == false);
-            
+            query = query.Where(x => x.AppUser.BloodGroup.ToLower() == bloodType.ToLower() && x.IsDeleted == false);
         }
 
         if (!string.IsNullOrEmpty(organ))
         {
-            query = query.Where(x=>x.Organ.Name == organ && x.IsDeleted == false);
+            query = query.Where(x => x.Organ.Name.ToLower() == organ.ToLower() && x.IsDeleted == false);
         }
         var values = await query.OrderByDescending(x => x.CreatedDate).ToListAsync();
         var getFilteredOrganDonationRequestDto = values.Select(x => new GetOrganDonationRequestDto()
