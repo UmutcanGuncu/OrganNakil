@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using OrganNakil.Persistence.Context;
@@ -11,9 +12,11 @@ using OrganNakil.Persistence.Context;
 namespace OrganNakil.Persistence.Migrations
 {
     [DbContext(typeof(OrganNakilDbContext))]
-    partial class OrganNakilDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241213091019_migAddedRefreshToken")]
+    partial class migAddedRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -208,9 +211,10 @@ namespace OrganNakil.Persistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("RefreshToken")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("RefreshTokenExpiry")
+                    b.Property<DateTime>("RefreshTokenExpiry")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SecurityStamp")

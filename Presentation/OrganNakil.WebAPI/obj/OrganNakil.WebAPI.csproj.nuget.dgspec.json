@@ -13,7 +13,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -42,7 +41,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -106,7 +106,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -131,7 +130,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -191,7 +191,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Infastructure/OrganNakil.Persistence/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -223,12 +222,17 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.8, )"
@@ -283,7 +287,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Presentation/OrganNakil.WebAPI/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -315,7 +318,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -324,6 +328,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[12.4.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.8, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",

@@ -13,7 +13,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Application/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -42,7 +41,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -106,7 +106,6 @@
         "packagesPath": "/Users/umutcanguncu/.nuget/packages/",
         "outputPath": "/Users/umutcanguncu/OrganNakil/Core/OrganNakil.Domain/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/umutcanguncu/.nuget/NuGet/NuGet.Config"
         ],
@@ -131,7 +130,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "all"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {

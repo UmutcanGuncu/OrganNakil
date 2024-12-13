@@ -6,7 +6,7 @@ using OrganNakil.Application.Mediatr.Commands.OrganCommands;
 namespace OrganNakil.WebAPI.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-[AllowAnonymous]
+[Authorize(AuthenticationSchemes = "Admin")]
 public class OrganController : ControllerBase
 {
     private readonly IMediator _mediator;

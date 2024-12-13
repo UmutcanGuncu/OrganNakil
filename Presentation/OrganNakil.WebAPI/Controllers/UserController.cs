@@ -6,9 +6,12 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OrganNakil.Application.Abstractions.Token;
+using OrganNakil.Application.Dtos.TokenDtos;
 using OrganNakil.Application.Dtos.UserDtos;
 using OrganNakil.Application.Interfaces;
 using OrganNakil.Application.Mediatr.Commands.UserCommands;
+using OrganNakil.Application.Mediatr.Queries.RefreshTokenQueries;
 using OrganNakil.Domain.Entities;
 
 namespace OrganNakil.WebAPI.Controllers
@@ -22,12 +25,16 @@ namespace OrganNakil.WebAPI.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMailRepository _mailRepository;
-        public UserController(IMediator mediator, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IMailRepository mailRepository)
+        private readonly ITokenHandler _tokenHandler;
+        private readonly IUserRepository _userRepository;
+        public UserController(IMediator mediator, SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, IMailRepository mailRepository, ITokenHandler tokenHandler, IUserRepository userRepository)
         {
             _mediator = mediator;
             _signInManager = signInManager;
             _userManager = userManager;
             _mailRepository = mailRepository;
+            _tokenHandler = tokenHandler;
+            _userRepository = userRepository;
         }
 
         [HttpPost("register")]
@@ -52,16 +59,18 @@ namespace OrganNakil.WebAPI.Controllers
                 return Unauthorized(userStatusDto);
             }
             await _signInManager.SignOutAsync();
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, true, true); // remember me bilgisini kullanıcıdan al
+            var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, true); // remember me bilgisini kullanıcıdan al
             if (result.Succeeded)
             {
+                Token token= _tokenHandler.CreateAccessToken(20);
+                await _userRepository.UpdateRefreshToken(token.RefreshToken, user, token.Expiration,2);
                 UserStatusDto userStatusDto = new()
                 {
                     Code = "Success",
                     Description = "Giriş İşlemi Başarıyla Tamamlanmıştır",
                     UserId = user.Id
                 };
-                return Ok(userStatusDto);
+                return Ok(token);
             }
             else
             {
@@ -76,6 +85,11 @@ namespace OrganNakil.WebAPI.Controllers
             
         }
 
+        [HttpGet("[action]")]
+        public async Task<IActionResult> RefreshTokenLogin([FromForm] RefreshTokenLoginQuery query)
+        {
+            return Ok(await _mediator.Send(query));
+        }
         [HttpGet("generate-reset-token")]
         public async Task<IActionResult> PasswordReset()
         {
@@ -101,7 +115,7 @@ namespace OrganNakil.WebAPI.Controllers
             await _mailRepository.SendResetMailAsync(passwordResetLink, hasUser.Email);
             return Ok();
         }
-
+        
     }
 }
 

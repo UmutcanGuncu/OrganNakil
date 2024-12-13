@@ -1,9 +1,14 @@
 ﻿using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Text;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using OrganNakil.Application.Abstractions.Token;
+using OrganNakil.Application.Dtos.TokenDtos;
 using OrganNakil.Application.Interfaces;
 using OrganNakil.Application.Mediatr.Handlers.UserHandlers;
 using OrganNakil.Application.OptionsModel;
@@ -11,6 +16,7 @@ using OrganNakil.Domain.Entities;
 using OrganNakil.Persistence.Context;
 using OrganNakil.Persistence.Repositories;
 using OrganNakil.WebAPI.Localizations;
+using TokenHandler = OrganNakil.Persistence.Repositories.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,11 +40,28 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddScoped<IMailRepository, MailRepository>();
 builder.Services.AddScoped<IOrganDonationRepository, OrganDonationRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<ITokenHandler, TokenHandler>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OrganNakilDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer("Admin",opt =>
+    {
+        opt.TokenValidationParameters = new()
+        {
+            ValidateIssuer = true, // oluşturulacak token değerini kimin dağıtacağını ifade edildiği alandır
+            ValidateAudience = true, // Oluşturulacak token değerini hangi sitelerin/ originler kullanacağını belirleriz
+            ValidateLifetime = true, // Oluşturulan token değerinin süresini kontrol edecek olan doğrulamadır
+            ValidateIssuerSigningKey = true, // gelen tokenlerda bakılacak değerleri bildiriyoruz. 
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
+            LifetimeValidator = (notBefore, expires,securityToken, validationParameters) => expires != null ? expires> DateTime.UtcNow : false
+        };
+    }); 
 builder.Services.AddAuthorization();
 builder.Services.ConfigureApplicationCookie(options =>
 {

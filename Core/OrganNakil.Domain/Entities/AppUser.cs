@@ -10,6 +10,8 @@ namespace OrganNakil.Domain.Entities
 		public string Surname { get; set; }
 		public string BloodGroup { get; set; }
 		public string City { get; set; }
+		public string? RefreshToken { get; set; }
+		public DateTime? RefreshTokenExpiry { get; set; }
 	}
 }
 
