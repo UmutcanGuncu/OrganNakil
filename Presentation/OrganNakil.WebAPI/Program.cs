@@ -1,9 +1,11 @@
 ﻿using System.Net.NetworkInformation;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -15,7 +17,12 @@ using OrganNakil.Application.OptionsModel;
 using OrganNakil.Domain.Entities;
 using OrganNakil.Persistence.Context;
 using OrganNakil.Persistence.Repositories;
+using OrganNakil.WebAPI.Configurations.ColumnWrites;
 using OrganNakil.WebAPI.Localizations;
+using Serilog;
+using Serilog.Context;
+using Serilog.Core;
+using Serilog.Sinks.PostgreSQL;
 using TokenHandler = OrganNakil.Persistence.Repositories.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,7 +43,31 @@ builder.Services.AddCors(options =>
             )); // Kimlik bilgilerini destekler
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSetting"));
-
+Logger logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/log.txt")
+    .WriteTo.PostgreSQL(builder.Configuration.GetConnectionString("DefaultConnection"),"Logs",needAutoCreateTable:true,// Logs tablosuna yazacak logları. Uygulama açılınca logs tablosu yoksa otomatik olarak oluşturacak
+        columnOptions: new Dictionary<string, ColumnWriterBase>
+        {
+            {"message", new RenderedMessageColumnWriter()},
+            {"message_template", new MessageTemplateColumnWriter()},
+            {"level", new LevelColumnWriter()},
+            {"exception", new ExceptionColumnWriter()},
+            {"log_event", new LogEventSerializedColumnWriter()},
+            {"timestamp", new TimestampColumnWriter()},
+            {"username", new UsernameColumnWriter()}
+        }).Enrich.FromLogContext() // Contexten beslenmesi gerektiğini bildiriyorum
+    .MinimumLevel.Information()
+    .CreateLogger();
+builder.Host.UseSerilog(logger);
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields = HttpLoggingFields.All;
+    logging.RequestHeaders.Add("sec-ch-ua"); // kullanıcıya dair tüm bilgileri getirecek key
+    logging.MediaTypeOptions.AddText("application/javascript");
+    logging.RequestBodyLogLimit = 4096;
+    logging.ResponseBodyLogLimit = 4096;
+});
 builder.Services.AddScoped<IMailRepository, MailRepository>();
 builder.Services.AddScoped<IOrganDonationRepository, OrganDonationRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -59,10 +90,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-            LifetimeValidator = (notBefore, expires,securityToken, validationParameters) => expires != null ? expires> DateTime.UtcNow : false
+            LifetimeValidator = (notBefore, expires,securityToken, validationParameters) => expires != null ? expires> DateTime.UtcNow : false,
+            NameClaimType = ClaimTypes.Name // JWT üzerinde Name claimine karşılık gelen değeri User.Identity.Name propertysinden elde edebiliriz
         };
     }); 
 builder.Services.AddAuthorization();
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie = new CookieBuilder
@@ -88,7 +121,6 @@ builder.Services.AddIdentity<AppUser, AppRole >(options =>
 
 var app = builder.Build();
 
-app.UseCors("myPolicy");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -96,11 +128,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseSerilogRequestLogging(); // hangi middlewarelareı logllamak istiyorsak o middleware'ların üstüne yaz
+app.UseHttpLogging(); // yapılan requesleri de log mekanizmsında yakalarız
+app.UseCors("myPolicy");
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+// UseAuthentication ve UseAuthorization middlevarelerindan sonra oluşturacaz 
+app.Use(async (context, next) =>
+{
+    var username = context.User?.Identity?.IsAuthenticated == true ? context.User.Identity.Name : "Anonymous"; 
+    LogContext.PushProperty("username", username);
+    await next();
+});
 app.MapControllers();
 
 app.Run();

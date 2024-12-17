@@ -1,10 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using OrganNakil.Application.Abstractions.Token;
 using OrganNakil.Application.Dtos.TokenDtos;
+using OrganNakil.Domain.Entities;
 
 namespace OrganNakil.Persistence.Repositories;
 
@@ -17,7 +19,7 @@ public class TokenHandler : ITokenHandler
         _configuration = configuration;
     }
 
-    public Token CreateAccessToken(int minute)
+    public Token CreateAccessToken(int minute, AppUser user)
     {
         Application.Dtos.TokenDtos.Token token = new();
         // Security Key'in simetriğini alıyoruz
@@ -31,7 +33,8 @@ public class TokenHandler : ITokenHandler
             issuer: _configuration["JWT:Issuer"],
             expires: token.Expiration,
             notBefore: DateTime.UtcNow,//token üretildiği zamandan ne kadar süre sonra devreye girsin
-            signingCredentials:signingCredentials
+            signingCredentials:signingCredentials,
+            claims: new List<Claim>{ new (ClaimTypes.Name,user.UserName)}
             );
         //Token oluşturucu sınıfından örnek alalım
         JwtSecurityTokenHandler handler = new ();

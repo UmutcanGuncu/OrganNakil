@@ -62,7 +62,8 @@ namespace OrganNakil.WebAPI.Controllers
             var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, true); // remember me bilgisini kullanıcıdan al
             if (result.Succeeded)
             {
-                Token token= _tokenHandler.CreateAccessToken(20);
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                Token token= _tokenHandler.CreateAccessToken(20, user);
                 await _userRepository.UpdateRefreshToken(token.RefreshToken, user, token.Expiration,2);
                 UserStatusDto userStatusDto = new()
                 {

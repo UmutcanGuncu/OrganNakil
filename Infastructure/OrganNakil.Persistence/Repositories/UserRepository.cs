@@ -34,7 +34,7 @@ public class UserRepository : IUserRepository
         AppUser? user = await _userManager.Users.FirstOrDefaultAsync(user => user.RefreshToken == refreshToken);
         if (user != null && user.RefreshTokenExpiry > DateTime.UtcNow)
         {
-            Token token = _tokenHandler.CreateAccessToken(5);
+            Token token = _tokenHandler.CreateAccessToken(5, user );
             await UpdateRefreshToken(token.RefreshToken, user,token.Expiration,2);
             return token;
         }
